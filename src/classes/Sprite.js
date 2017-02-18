@@ -20,6 +20,14 @@ export class Sprite {
 		this.yPos = yPos;
 	}
 
+	setWidth( width ) {
+		this.width = width;
+	}
+
+	setHeight( height ) {
+		this.height = height;
+	}
+
 	setSpeed( speed ) {
 		this.speed = speed;
 	}
