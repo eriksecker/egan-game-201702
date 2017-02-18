@@ -111,7 +111,6 @@ export class Controls extends Component {
 function mapStateToProps(state) {
 	return {
 		hero: state.hero.model,
-		heroData: state.hero.data,
 	}
 }
 
