@@ -17,6 +17,13 @@
     position: absolute;
     width: 1186px;
     background-image: url("../images/pattern.png");
-    height: 100%; }
+    height: 100%;
+    z-index: 0; }
+  #game .hero {
+    position: absolute;
+    z-index: 1000;
+    width: 75px;
+    height: 75px;
+    background-color: #999; }
 
 /*# sourceMappingURL=styles.css.map */
