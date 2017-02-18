@@ -22,7 +22,7 @@ export class Background extends Component {
 		background.setPatternRepeatWidth(PATTERN_WIDTH);
 		updateModel(background);
 
-		const intervalId = setInterval( this.backgroundAutoUpdates.bind(this), INTERVAL_RATE);
+		const intervalId = setInterval( this.backgroundMoveLeft.bind(this), INTERVAL_RATE);
 
 		this.setState({intervalId: intervalId});
 
@@ -32,10 +32,7 @@ export class Background extends Component {
 		clearInterval( this.state.intervalId );
 	}
 
-	backgroundAutoUpdates() {
-		const { background, updateModel } = this.props;
-		background.moveLeft();
-		updateModel(background);
+	backgroundMoveLeft() {
 	}
 
 	render() {

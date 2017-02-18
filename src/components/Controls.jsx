@@ -14,71 +14,23 @@ export class Controls extends Component {
 	}
 
 	moveUp() {
-		const { hero, updateModel } = this.props;
-
-		clearInterval( this.state.intervalId );
-
-		const intervalId = setInterval( () => {
-			hero.moveUp();
-			updateModel(hero);
-		}, INTERVAL_RATE);
-		this.setState({intervalId: intervalId});
-
 	}
 
 	moveDown() {
-		const { hero, updateModel } = this.props;
-
-		clearInterval( this.state.intervalId );
-
-		const intervalId = setInterval( () => {
-			hero.moveDown();
-			updateModel(hero);
-		}, INTERVAL_RATE);
-		this.setState({intervalId: intervalId});
 	}
 
 	moveLeft() {
-		const { hero, updateModel } = this.props;
-
-		clearInterval( this.state.intervalId );
-
-		const intervalId = setInterval( () => {
-			hero.moveLeft();
-			updateModel(hero);
-		}, INTERVAL_RATE);
-		this.setState({intervalId: intervalId});
-
 	}
 
 	moveRight() {
-		const { hero, updateModel } = this.props;
-
-		clearInterval( this.state.intervalId );
-
-		const intervalId = setInterval( () => {
-			hero.moveRight();
-			updateModel(hero);
-		}, INTERVAL_RATE);
-		this.setState({intervalId: intervalId});
-
 	}
 
 	stopMove() {
-		clearInterval( this.state.intervalId );
 	}
 
 	render() {
 		return (
 			<div id="controls">
-				<button
-					type="button"
-					onMouseDown={ this.moveLeft.bind(this) }
-					onMouseUp={ this.stopMove.bind(this) }
-				>
-					<span className="fa fa-caret-left" />
-				</button>
-
 				<button
 					type="button"
 					onMouseDown={ this.moveUp.bind(this) }
@@ -94,15 +46,6 @@ export class Controls extends Component {
 				>
 					<span className="fa fa-caret-down" />
 				</button>
-
-				<button
-					type="button"
-					onMouseDown={ this.moveRight.bind(this) }
-					onMouseUp={ this.stopMove.bind(this) }
-				>
-					<span className="fa fa-caret-right" />
-				</button>
-
 			</div>
 		);
 	}

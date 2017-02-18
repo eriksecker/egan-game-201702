@@ -32,22 +32,6 @@ export class Sprite {
 		this.speed = speed;
 	}
 
-	// MOVE FUNCTIONS
-	moveUp() {
-		this.yPos = this.yPos - this.speed;
-	}
-
-	moveDown() {
-		this.yPos = this.yPos + this.speed;
-	}
-
-	moveLeft() {
-		this.xPos = this.xPos - this.speed;
-	}
-
-	moveRight() {
-		this.xPos = this.xPos + this.speed;
-	}
 }
 
 export default Sprite;
