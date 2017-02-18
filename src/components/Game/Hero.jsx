@@ -20,7 +20,6 @@ export class Hero extends Component {
 	render() {
 		const { hero } = this.props;
 
-		console.log( hero );
 		const styles = {
 			left: `${hero.xPos}px`,
 			top: `${hero.yPos}px`,
