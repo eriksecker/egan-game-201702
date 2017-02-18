@@ -42,8 +42,8 @@ export class Background extends Component {
 		const { background } = this.props;
 
 		const styles = {
-			left: background.xPos,
-			top: background.yPos,
+			left: `${background.xPos}px`,
+			top: `${background.yPos}px`,
 		}
 		return (
 			<div className="background" style={ styles }></div>
