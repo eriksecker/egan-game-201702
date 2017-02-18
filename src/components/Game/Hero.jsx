@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 const HERO_SPEED = 10;
-const HERO_WIDTH = 75;
-const HERO_HEIGHT = 75;
+const HERO_WIDTH = 150;
+const HERO_HEIGHT = 113;
 const HERO_INIT_X = 200;
 const HERO_INIT_Y = 200;
 
@@ -23,14 +23,19 @@ export class Hero extends Component {
 
 	render() {
 		const { hero } = this.props;
+		// console.log( "x:", hero.xPos, ", y:", hero.yPos );
 
 		const styles = {
 			left: `${hero.xPos}px`,
 			top: `${hero.yPos}px`,
+			width: `${hero.width}px`,
+			height: `${hero.height}px`,
 		}
 
 		return (
-			<div className="hero" style={ styles } />
+			<div className="hero" style={ styles }>
+				<img src="images/dragon.png" />
+			</div>
 		);
 	}
 }
