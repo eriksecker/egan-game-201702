@@ -14,17 +14,15 @@ export class Background extends Sprite {
 			this.patternRepeatWidth = width;
 		}
 
-		moveBackgroundHorizontally() {
-			let newX = this.xPos + this.speed;
+		moveLeft() {
+			super.moveLeft();
 
 			if( this.patternRepeatWidth ) {
 
-				if( Math.abs(newX) > this.patternRepeatWidth ) {
-					newX = 0;
+				if( Math.abs(this.xPos) > this.patternRepeatWidth ) {
+					this.xPos = 0;
 				}
 			}
-
-			this.xPos = newX;
 		}
 }
 

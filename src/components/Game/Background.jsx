@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { INTERVAL_RATE } from '../../constants';
-const BACKGROUND_SPEED = -10;
+const BACKGROUND_SPEED = 10;
 const PATTERN_WIDTH = 186;
 
 import * as actions from '../../reducers/background';
@@ -34,7 +34,7 @@ export class Background extends Component {
 
 	backgroundAutoUpdates() {
 		const { background, updateModel } = this.props;
-		background.moveBackgroundHorizontally();
+		background.moveLeft();
 		updateModel(background);
 	}
 
