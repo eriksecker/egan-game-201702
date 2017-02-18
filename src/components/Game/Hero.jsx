@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 const HERO_SPEED = 10;
+const HERO_WIDTH = 75;
+const HERO_HEIGHT = 75;
 const HERO_INIT_X = 200;
 const HERO_INIT_Y = 200;
 
@@ -12,6 +14,8 @@ export class Hero extends Component {
 		const { hero, updateModel } = this.props;
 
 		hero.setPosition( HERO_INIT_X, HERO_INIT_Y )
+		hero.setWidth(HERO_WIDTH);
+		hero.setHeight(HERO_HEIGHT);
 		hero.setSpeed(HERO_SPEED);
 		updateModel(hero);
 
