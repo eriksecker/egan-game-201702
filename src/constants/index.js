@@ -1,1 +1,1 @@
-export const INTERVAL_RATE = 100;
+export const INTERVAL_RATE = 50;
