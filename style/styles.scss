@@ -2,7 +2,7 @@
 @import 'game';
 @import 'controls';
 
-img { max-width: 100%; max-height: 100%; }
+$heroZindex: 1000;
 
 #game {
 	position: relative;
@@ -23,6 +23,26 @@ img { max-width: 100%; max-height: 100%; }
 
 	.hero {
 		position: absolute;
-		z-index: 1000;
+		z-index: $heroZindex;
+
+		.wrapper {
+			position: relative;
+
+			.body, .left-leg, .right-leg {
+				position: absolute;
+			}
+			.body {
+				background-image: image('../images/dragon-body.png');
+				z-index: $heroZindex+5;
+			}
+			.left-leg {
+				background-image: image('../images/dragon-left-leg.png');
+				z-index: $heroZindex+10;
+			}
+			.right-leg {
+				background-image: image('../images/dragon-right-leg.png');
+				z-index: $heroZindex+15;
+			}
+		}
 	}
 }

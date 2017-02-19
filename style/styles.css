@@ -6,10 +6,6 @@
     font-size: 50px;
     line-height: 50px; }
 
-img {
-  max-width: 100%;
-  max-height: 100%; }
-
 #game {
   position: relative;
   overflow: hidden;
@@ -26,8 +22,19 @@ img {
     z-index: 0; }
   #game .hero {
     position: absolute;
-    z-index: 1000;
-    width: 150px;
-    height: 150px; }
+    z-index: 1000; }
+    #game .hero .wrapper {
+      position: relative; }
+      #game .hero .wrapper .body, #game .hero .wrapper .left-leg, #game .hero .wrapper .right-leg {
+        position: absolute; }
+      #game .hero .wrapper .body {
+        background-image: image("../images/dragon-body.png");
+        z-index: 1005; }
+      #game .hero .wrapper .left-leg {
+        background-image: image("../images/dragon-left-leg.png");
+        z-index: 1010; }
+      #game .hero .wrapper .right-leg {
+        background-image: image("../images/dragon-right-leg.png");
+        z-index: 1015; }
 
 /*# sourceMappingURL=styles.css.map */
