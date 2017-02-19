@@ -13,6 +13,13 @@ export class Sprite {
 		this.height = (height)	? height 	: 0;
 		this.speed 	= (speed)		? speed 	: 0;
 
+		this.animate = {
+			range: {},
+			totalSteps: 0,
+			currentStep: 0,
+			continuous: false,
+		}
+
 	} // /constructor
 
 	setPosition( xPos, yPos ) {
@@ -53,6 +60,20 @@ export class Sprite {
 		this.yPos = newY;
 	}
 
+	// ANIMATE FUNCTIONS
+	setAnimateRangeStartPos( x, y ) {
+		this.animate.range.start = {
+			xPos: x,
+			yPos: y,
+		};
+	}
+
+	setAnimateRangeEndPos( x, y ) {
+		this.animate.range.end = {
+			xPos: x,
+			yPos: y,
+		};
+	}
 }
 
 export default Sprite;
