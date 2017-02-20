@@ -42,6 +42,11 @@ export class Sprite {
 		this.speed = speed;
 	}
 
+	// SCALE FUNCTION
+	scale( scaleValue ) {
+		this.width = this.width * scaleValue;
+	}
+
 	// MOVE FUNCTIONS
 	moveRight() {
 		const newX = this.xPos + this.speed

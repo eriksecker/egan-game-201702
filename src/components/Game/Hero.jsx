@@ -49,27 +49,40 @@ export class Hero extends Component {
 		const { hero, updateModel } = this.props;
 
 		// INIT HERO WHOLE
-		hero.setWidth( this.scaleHeroValue(HERO_WIDTH) );
-		hero.setHeight( this.scaleHeroValue(HERO_HEIGHT) );
+		hero.setWidth( HERO_WIDTH );
+		hero.setHeight( HERO_HEIGHT );
 		hero.setPosition( HERO_INIT_X, HERO_INIT_Y );
 		hero.setSpeed( HERO_SPEED );
 
 		// INIT HERO BODY
-		hero.body.setWidth( this.scaleHeroValue(HERO_BODY_WIDTH) );
-		hero.body.setHeight( this.scaleHeroValue(HERO_BODY_HEIGHT) );
-		hero.body.setPosition( this.scaleHeroValue(HERO_BODY_X), this.scaleHeroValue(HERO_BODY_Y) );
+		hero.body.setWidth( HERO_BODY_WIDTH );
+		hero.body.setHeight( HERO_BODY_HEIGHT );
+		hero.body.setPosition( HERO_BODY_X, HERO_BODY_Y );
 
 		// INIT HERO LEFT LEG
-		hero.leftLeg.setWidth( this.scaleHeroValue(HERO_LEFT_LEG_WIDTH) );
-		hero.leftLeg.setHeight( this.scaleHeroValue(HERO_LEFT_LEG_HEIGHT) );
-		hero.leftLeg.setPosition( this.scaleHeroValue(HERO_LEFT_LEG_DOWN_X), this.scaleHeroValue(HERO_LEFT_LEG_DOWN_Y) );
-		hero.leftLeg.initAnimation( this.scaleHeroValue(HERO_LEFT_LEG_UP_X), this.scaleHeroValue(HERO_LEFT_LEG_UP_Y), HERO_LEG_ANIMATION_STEPS );
+		hero.leftLeg.setWidth( HERO_LEFT_LEG_WIDTH );
+		hero.leftLeg.setHeight( HERO_LEFT_LEG_HEIGHT );
+		hero.leftLeg.setPosition( HERO_LEFT_LEG_DOWN_X, HERO_LEFT_LEG_DOWN_Y );
 
 		// INIT HERO RIGHT LEG
-		hero.rightLeg.setWidth( this.scaleHeroValue(HERO_RIGHT_LEG_WIDTH) );
-		hero.rightLeg.setHeight( this.scaleHeroValue(HERO_RIGHT_LEG_HEIGHT) );
-		hero.rightLeg.setPosition( this.scaleHeroValue(HERO_RIGHT_LEG_UP_X), this.scaleHeroValue(HERO_RIGHT_LEG_UP_Y) );
-		hero.rightLeg.initAnimation( this.scaleHeroValue(HERO_RIGHT_LEG_DOWN_X), this.scaleHeroValue(HERO_RIGHT_LEG_DOWN_Y), HERO_LEG_ANIMATION_STEPS );
+		hero.rightLeg.setWidth( HERO_RIGHT_LEG_WIDTH );
+		hero.rightLeg.setHeight( HERO_RIGHT_LEG_HEIGHT );
+		hero.rightLeg.setPosition( HERO_RIGHT_LEG_UP_X, HERO_RIGHT_LEG_UP_Y );
+
+		// SIZE HERO
+		hero.scale( HERO_SCALE );
+
+		// INIT LEG ANIMATION - POSITIONS NEED TO BE SCALED LIKE REST OF HERO
+		hero.leftLeg.initAnimation(
+			HERO_LEFT_LEG_UP_X * HERO_SCALE,
+			HERO_LEFT_LEG_UP_Y * HERO_SCALE,
+			HERO_LEG_ANIMATION_STEPS
+		);
+		hero.rightLeg.initAnimation(
+			HERO_RIGHT_LEG_DOWN_X * HERO_SCALE,
+			HERO_RIGHT_LEG_DOWN_Y * HERO_SCALE,
+			HERO_LEG_ANIMATION_STEPS
+		);
 
 		updateModel(hero);
 
