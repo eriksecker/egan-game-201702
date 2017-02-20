@@ -17,7 +17,10 @@ export class Sprite {
 			range: {},
 			totalSteps: 0,
 			currentStep: 0,
+			xSpeed: 0,
+			ySpeed: 0,
 			continuous: false,
+			completed: false,
 		}
 
 	} // /constructor
@@ -73,6 +76,60 @@ export class Sprite {
 			xPos: x,
 			yPos: y,
 		};
+	}
+
+	initAnimation( endX, endY, totalSteps, continuous=true ) {
+		this.setAnimateRangeStartPos( this.xPos, this.yPos );
+		this.setAnimateRangeEndPos( endX, endY );
+
+
+		const xDistance = endX - this.xPos;
+		const yDistance = endY - this.yPos;
+
+		const targetDistance = Math.sqrt( Math.pow( Math.abs(xDistance), 2 ) + Math.pow( Math.abs(yDistance), 2) );
+
+		if( ! totalSteps ) {
+			totalSteps = targetDistance / this.speed;
+		}
+
+		const xSpeed = xDistance / totalSteps;
+		const ySpeed = yDistance / totalSteps;
+
+
+		this.animate.continuous = continuous;
+		this.animate.completed = false;
+		this.animate.totalSteps = totalSteps;
+		this.animate.currentStep = 0;
+		this.animate.xSpeed = xSpeed;
+		this.animate.ySpeed = ySpeed;
+	}
+
+	stepAnimation() {
+		const { animate } = this;
+
+		if( animate.completed || animate.currentStep >= animate.totalSteps ) {
+			return;
+		}
+
+		animate.currentStep += 1;
+
+		this.xPos += animate.xSpeed;
+		this.yPos += animate.ySpeed;
+
+		if( animate.currentStep >= animate.totalSteps ) {
+			this.xPos = animate.range.end.xPos;
+			this.yPos = animate.range.end.yPos;
+			animate.completed = true;
+
+			if( animate.continuous ) {
+				this.initAnimation(
+					animate.range.start.xPos,
+					animate.range.start.yPos,
+					animate.totalSteps,
+					animate.continuous,
+				);
+			}
+		}
 	}
 }
 
