@@ -27,10 +27,20 @@ const HERO_RIGHT_LEG_DOWN_Y = 212;
 const HERO_RIGHT_LEG_UP_X = 411;
 const HERO_RIGHT_LEG_UP_Y = 193;
 const HERO_LEG_SPEED = 10;
+const HERO_LEG_ANIMATE_INTERVAL_RATE = 250;
+const HERO_LEG_ANIMATION_STEPS = 1;
 
 import * as actions from '../../reducers/hero';
 
 export class Hero extends Component {
+	constructor() {
+		super();
+
+		this.state = {
+			intervalId: null,
+		}
+	}
+
 	componentWillMount() {
 		const { hero, updateModel } = this.props;
 
@@ -45,29 +55,38 @@ export class Hero extends Component {
 		hero.setHeight(HERO_BODY_HEIGHT);
 		hero.body.setPosition( HERO_BODY_X, HERO_BODY_Y );
 
-		// INIT HERO LEFT LEG AND ANIMATION RANGES
+		// INIT HERO LEFT LEG
 		hero.leftLeg.setWidth( HERO_LEFT_LEG_WIDTH );
 		hero.leftLeg.setHeight( HERO_LEFT_LEG_HEIGHT );
 		hero.leftLeg.setPosition( HERO_LEFT_LEG_DOWN_X, HERO_LEFT_LEG_DOWN_Y );
 		hero.leftLeg.setSpeed( HERO_LEG_SPEED );
-		hero.leftLeg.setAnimateRangeStartPos( HERO_LEFT_LEG_DOWN_X, HERO_LEFT_LEG_DOWN_Y );
-		hero.leftLeg.setAnimateRangeEndPos( HERO_LEFT_LEG_UP_X, HERO_LEFT_LEG_UP_Y );
+		hero.leftLeg.initAnimation( HERO_LEFT_LEG_UP_X, HERO_LEFT_LEG_UP_Y, HERO_LEG_ANIMATION_STEPS );
 
-		// INIT HERO RIGHT LEG AND ANIMATION RANGES
+		// INIT HERO RIGHT LEG
 		hero.rightLeg.setWidth( HERO_RIGHT_LEG_WIDTH );
 		hero.rightLeg.setHeight( HERO_RIGHT_LEG_HEIGHT );
 		hero.rightLeg.setPosition( HERO_RIGHT_LEG_UP_X, HERO_RIGHT_LEG_UP_Y );
 		hero.rightLeg.setSpeed( HERO_LEG_SPEED );
-		hero.rightLeg.setAnimateRangeStartPos( HERO_RIGHT_LEG_UP_X, HERO_RIGHT_LEG_UP_Y );
-		hero.rightLeg.setAnimateRangeEndPos( HERO_RIGHT_LEG_DOWN_X, HERO_RIGHT_LEG_DOWN_Y );
+		hero.rightLeg.initAnimation( HERO_RIGHT_LEG_DOWN_X, HERO_RIGHT_LEG_DOWN_Y, HERO_LEG_ANIMATION_STEPS );
 
 		updateModel(hero);
 
+		// CONTINUOUS ANIMATION OF HERO LEGS
+		const intervalId = setInterval( () => {
+			hero.leftLeg.stepAnimation();
+			hero.rightLeg.stepAnimation();
+			updateModel(hero);
+		}, HERO_LEG_ANIMATE_INTERVAL_RATE);
+		this.setState({ intervalId });
+	}
+
+	componentWillUnmount() {
+		clearInterval( this.state.intervalId );
 	}
 
 	render() {
 		const { hero } = this.props;
-		console.log( hero );
+		// console.log( hero );
 
 		const heroStyles = {
 			left: `${hero.xPos}px`,
@@ -90,8 +109,6 @@ export class Hero extends Component {
 			left: `${hero.rightLeg.xPos}px`,
 			top: `${hero.rightLeg.yPos}px`,
 		}
-
-
 
 		return (
 			<div className="hero" style={ heroStyles }>
