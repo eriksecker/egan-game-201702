@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+const HERO_SCALE = .3;
+
 const HERO_SPEED = 10;
 const HERO_WIDTH = 720;
 const HERO_HEIGHT = 546;
-// const HERO_INIT_X = 200;
-// const HERO_INIT_Y = 200;
-const HERO_INIT_X = 20;
-const HERO_INIT_Y = 20;
+const HERO_INIT_X = 200;
+const HERO_INIT_Y = 200;
 
 const HERO_BODY_WIDTH = 583;
 const HERO_BODY_HEIGHT = 492;
@@ -41,33 +41,35 @@ export class Hero extends Component {
 		}
 	}
 
+	scaleHeroValue( value ) {
+		return value * HERO_SCALE;
+	}
+
 	componentWillMount() {
 		const { hero, updateModel } = this.props;
 
 		// INIT HERO WHOLE
-		hero.setWidth(HERO_WIDTH);
-		hero.setHeight(HERO_HEIGHT);
-		hero.setPosition( HERO_INIT_X, HERO_INIT_Y )
-		hero.setSpeed(HERO_SPEED);
+		hero.setWidth( this.scaleHeroValue(HERO_WIDTH) );
+		hero.setHeight( this.scaleHeroValue(HERO_HEIGHT) );
+		hero.setPosition( HERO_INIT_X, HERO_INIT_Y );
+		hero.setSpeed( HERO_SPEED );
 
 		// INIT HERO BODY
-		hero.setWidth(HERO_BODY_WIDTH);
-		hero.setHeight(HERO_BODY_HEIGHT);
-		hero.body.setPosition( HERO_BODY_X, HERO_BODY_Y );
+		hero.body.setWidth( this.scaleHeroValue(HERO_BODY_WIDTH) );
+		hero.body.setHeight( this.scaleHeroValue(HERO_BODY_HEIGHT) );
+		hero.body.setPosition( this.scaleHeroValue(HERO_BODY_X), this.scaleHeroValue(HERO_BODY_Y) );
 
 		// INIT HERO LEFT LEG
-		hero.leftLeg.setWidth( HERO_LEFT_LEG_WIDTH );
-		hero.leftLeg.setHeight( HERO_LEFT_LEG_HEIGHT );
-		hero.leftLeg.setPosition( HERO_LEFT_LEG_DOWN_X, HERO_LEFT_LEG_DOWN_Y );
-		hero.leftLeg.setSpeed( HERO_LEG_SPEED );
-		hero.leftLeg.initAnimation( HERO_LEFT_LEG_UP_X, HERO_LEFT_LEG_UP_Y, HERO_LEG_ANIMATION_STEPS );
+		hero.leftLeg.setWidth( this.scaleHeroValue(HERO_LEFT_LEG_WIDTH) );
+		hero.leftLeg.setHeight( this.scaleHeroValue(HERO_LEFT_LEG_HEIGHT) );
+		hero.leftLeg.setPosition( this.scaleHeroValue(HERO_LEFT_LEG_DOWN_X), this.scaleHeroValue(HERO_LEFT_LEG_DOWN_Y) );
+		hero.leftLeg.initAnimation( this.scaleHeroValue(HERO_LEFT_LEG_UP_X), this.scaleHeroValue(HERO_LEFT_LEG_UP_Y), HERO_LEG_ANIMATION_STEPS );
 
 		// INIT HERO RIGHT LEG
-		hero.rightLeg.setWidth( HERO_RIGHT_LEG_WIDTH );
-		hero.rightLeg.setHeight( HERO_RIGHT_LEG_HEIGHT );
-		hero.rightLeg.setPosition( HERO_RIGHT_LEG_UP_X, HERO_RIGHT_LEG_UP_Y );
-		hero.rightLeg.setSpeed( HERO_LEG_SPEED );
-		hero.rightLeg.initAnimation( HERO_RIGHT_LEG_DOWN_X, HERO_RIGHT_LEG_DOWN_Y, HERO_LEG_ANIMATION_STEPS );
+		hero.rightLeg.setWidth( this.scaleHeroValue(HERO_RIGHT_LEG_WIDTH) );
+		hero.rightLeg.setHeight( this.scaleHeroValue(HERO_RIGHT_LEG_HEIGHT) );
+		hero.rightLeg.setPosition( this.scaleHeroValue(HERO_RIGHT_LEG_UP_X), this.scaleHeroValue(HERO_RIGHT_LEG_UP_Y) );
+		hero.rightLeg.initAnimation( this.scaleHeroValue(HERO_RIGHT_LEG_DOWN_X), this.scaleHeroValue(HERO_RIGHT_LEG_DOWN_Y), HERO_LEG_ANIMATION_STEPS );
 
 		updateModel(hero);
 
@@ -98,16 +100,22 @@ export class Hero extends Component {
 		const bodyStyles = {
 			left: `${hero.body.xPos}px`,
 			top: `${hero.body.yPos}px`,
+			width: `${hero.body.width}px`,
+			height: `${hero.body.height}px`,
 		}
 
 		const leftLegStyles = {
 			left: `${hero.leftLeg.xPos}px`,
 			top: `${hero.leftLeg.yPos}px`,
+			width: `${hero.leftLeg.width}px`,
+			height: `${hero.leftLeg.height}px`,
 		}
 
 		const rightLegStyles = {
 			left: `${hero.rightLeg.xPos}px`,
 			top: `${hero.rightLeg.yPos}px`,
+			width: `${hero.rightLeg.width}px`,
+			height: `${hero.rightLeg.height}px`,
 		}
 
 		return (
