@@ -44,7 +44,7 @@ export class Sprite {
 
 	// SCALE FUNCTION
 	scale( scaleValue ) {
-		this.width = this.width * scaleValue;
+
 	}
 
 	// MOVE FUNCTIONS
