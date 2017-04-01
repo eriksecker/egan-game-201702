@@ -7,7 +7,7 @@ const HERO_SPEED = 10;
 const HERO_WIDTH = 720;
 const HERO_HEIGHT = 546;
 const HERO_INIT_X = 10;
-const HERO_INIT_Y = 60;
+const HERO_INIT_Y = 10;
 
 const HERO_BODY_WIDTH = 583;
 const HERO_BODY_HEIGHT = 492;
@@ -136,12 +136,6 @@ export class Hero extends Component {
 				<div className="wrapper">
 					<div className="body" style={ bodyStyles }>
 						<img src="images/dragon-body.png" />
-					</div>
-					<div className="left-leg" style={ leftLegStyles }>
-						<img src="images/dragon-left-leg.png" />
-					</div>
-					<div className="right-leg" style={ rightLegStyles }>
-						<img src="images/dragon-right-leg.png" />
 					</div>
 				</div>
 			</div>
